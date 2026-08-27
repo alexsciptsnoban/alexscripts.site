@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALEX SCRIPTS</title>
+    <style>
+        :root {
+            --bg: #0f0f0f;
+            --card: #1a1a1a;
+            --accent: #00ff9d;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg);
+            color: #e0e0e0;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        
+        header {
+            background: #111;
+            padding: 1rem 0;
+            border-bottom: 1px solid #333;
+        }
+        
+        .top-bar {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+        
+        nav a {
+            color: #ccc;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+        
+        nav a:hover { 
+            color: var(--accent); 
+            text-shadow: 0 0 15px var(--accent);
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 4rem 1rem 3rem;
+            background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 0.8rem;
+            color: var(--accent);
+            text-shadow: 0 0 30px var(--accent);
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: #aaa;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .section-title {
+            color: var(--accent);
+            margin: 2rem 0 2.5rem;
+            font-size: 2.3rem;
+            text-align: center;
+            text-shadow: 0 0 20px var(--accent);
+        }
+        
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(390px, 1fr));
+            gap: 1.8rem;
+        }
+        
+        .card {
+            background: var(--card);
+            border-radius: 14px;
+            overflow: hidden;
+            border: 2px solid #333;
+            transition: all 0.4s;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 0 35px rgba(0,255,157,0.3);
+        }
+        
+        .thumbnail {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+        }
+        
+        .card-info {
+            padding: 1.4rem;
+            text-align: center;
+        }
+        
+        .card-title {
+            font-size: 1.15rem;
+            margin-bottom: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .get-script-btn {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            padding: 13px 34px;
+            font-size: 1.05rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s;
+            box-shadow: 0 0 20px var(--accent);
+        }
+        
+        .get-script-btn:hover {
+            background: var(--accent);
+            color: #000;
+            box-shadow: 0 0 35px var(--accent);
+            transform: scale(1.08);
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.96);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: #1a1a1a;
+            padding: 22px;
+            border-radius: 14px;
+            max-width: 900px;
+            width: 92%;
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 40px var(--accent);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        
+        .close {
+            font-size: 34px;
+            cursor: pointer;
+            color: #aaa;
+        }
+        
+        .modal-image {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 18px;
+        }
+        
+        .script-box {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 16px;
+            position: relative;
+        }
+        
+        .script-box pre {
+            color: #00ff9d;
+            font-family: 'Consolas', monospace;
+            font-size: 0.95rem;
+            white-space: pre-wrap;
+            word-break: break-all;
+            line-height: 1.5;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--accent);
+            color: #000;
+            border: none;
+            padding: 8px 18px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 0 15px var(--accent);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #666;
+            border-top: 1px solid #333;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <nav>
+                <ul>
+                    <li><a href="https://discord.gg/FwN4cT3shP" target="_blank">DISCORD</a></li>
+                    <li><a href="#scripts">SCRIPTS</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero">
+        <h1>Alex Scripts</h1>
+        <p>Alex Official - All Scripts</p>
+    </div>
+
+    <div class="container">
+        <h2 id="scripts" class="section-title">Scripts 👇👇👇</h2>
+        <div class="videos-grid">
+            
+            <div class="card">
+                <img src="https://cdn.phototourl.com/free/2026-08-22-5a3c439d-3a05-4323-81f0-8648636fb9e9.webp" class="thumbnail" alt="Múscle Beach Arena">
+                <div class="card-info">
+                    <div class="card-title">Múscle Beach Arena Script</div>
+                    <button class="get-script-btn" onclick="openModal(0)">GET SCRIPT</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://plain-weur-prod-public.komododecks.com/202608/19/5IUqKmQlJka2l5e9sWZ0/image.jpg" class="thumbnail" alt="Cat Piece V3">
+                <div class="card-info">
+                    <div class="card-title">Cat Piece V3 Script</div>
+                    <button class="get-script-btn" onclick="openModal(1)">GET SCRIPT</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://plain-weur-prod-public.komododecks.com/202608/03/1chK5VXklLbo3UuSrgtG/image.webp" class="thumbnail" alt="FINAL FIRE SCRIPT PANEL">
+                <div class="card-info">
+                    <div class="card-title">FINAL FIRE SCRIPT PANEL</div>
+                    <button class="get-script-btn" onclick="openModal(2)">GET SCRIPT</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://plain-weur-prod-public.komododecks.com/202607/15/sY280Zx0zyVIwy8vThkT/image.webp" class="thumbnail" alt="Muscle Masters">
+                <div class="card-info">
+                    <div class="card-title">Muscle Masters Script</div>
+                    <button class="get-script-btn" onclick="openModal(3)">GET SCRIPT</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://plain-weur-prod-public.komododecks.com/202607/15/zUF0zTNjRDj2WkGQjqak/image.jpg" class="thumbnail" alt="Cat Piece V2">
+                <div class="card-info">
+                    <div class="card-title">Cat Piece V2 Script</div>
+                    <button class="get-script-btn" onclick="openModal(4)">GET SCRIPT</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://plain-weur-prod-public.komododecks.com/202607/15/2I2mVFmeCYzzNxPSmzkg/image.webp" class="thumbnail" alt="Cat Piece">
+                <div class="card-info">
+                    <div class="card-title">Cat Piece Script</div>
+                    <button class="get-script-btn" onclick="openModal(5)">GET SCRIPT</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://plain-weur-prod-public.komododecks.com/202607/15/mEMnw0x3C97vbKZF56so/image.webp" class="thumbnail" alt="Rivals">
+                <div class="card-info">
+                    <div class="card-title">Rivals Script</div>
+                    <button class="get-script-btn" onclick="openModal(6)">GET SCRIPT</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Script</h3>
+                <span class="close" onclick="closeModal()">×</span>
+            </div>
+            <img id="modal-image" class="modal-image" src="" alt="">
+            <div class="script-box">
+                <button class="copy-btn" onclick="copyScript()">COPY</button>
+                <pre id="script-code"></pre>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>Alex Cheats</strong> - All scripts by Alex official</p>
+        <p>© 2026 Alex Cheats • All Rights Reserved</p>
+    </footer>
+
+    <script>
+        const scriptsData = [
+            { title: "Múscle Beach Arena Script", code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/alexgamingofficial2026-del/Alex-Hacks/refs/heads/main/MuscleBeachArena"))()`, image: "https://cdn.phototourl.com/free/2026-08-22-5a3c439d-3a05-4323-81f0-8648636fb9e9.webp" },
+            { title: "Cat Piece V3 Script", code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/alexgamingofficial2026-del/Alex-Hacks/refs/heads/main/CatPieceV3"))()`, image: "https://plain-weur-prod-public.komododecks.com/202608/19/5IUqKmQlJka2l5e9sWZ0/image.jpg" },
+            { title: "FINAL FIRE SCRIPT PANEL", code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/alexgamingofficial2026-del/AlexGG/refs/heads/main/PANEL-SCRIPT-2026"))()`, image: "https://plain-weur-prod-public.komododecks.com/202608/03/1chK5VXklLbo3UuSrgtG/image.webp" },
+            { title: "Muscle Masters Script", code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/alexgamingofficial2026-del/Alex-Hacks/refs/heads/main/Muscle%20Masters"))()`, image: "https://plain-weur-prod-public.komododecks.com/202607/15/sY280Zx0zyVIwy8vThkT/image.webp" },
+            { title: "Cat Piece V2 Script", code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/alexgamingofficial2026-del/AlexGG2/refs/heads/main/CatPieceV2"))()`, image: "https://plain-weur-prod-public.komododecks.com/202607/15/zUF0zTNjRDj2WkGQjqak/image.jpg" },
+            { title: "Cat Piece Script", code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/alexgamingofficial2026-del/AlexGG/refs/heads/main/Cat%20Piece"))()`, image: "https://plain-weur-prod-public.komododecks.com/202607/15/2I2mVFmeCYzzNxPSmzkg/image.webp" },
+            { title: "Rivals Script", code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/JNHHGaming/Rivals-Loader-V3/refs/heads/main/JN%20HH%20Gaming",true))()`, image: "https://plain-weur-prod-public.komododecks.com/202607/15/mEMnw0x3C97vbKZF56so/image.webp" }
+        ];
+
+        function openModal(index) {
+            const data = scriptsData[index];
+            document.getElementById('modal-title').textContent = data.title;
+            document.getElementById('modal-image').src = data.image;
+            document.getElementById('script-code').textContent = data.code;
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        function copyScript() {
+            const text = document.getElementById('script-code').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('✅ Script copiado al portapapeles!');
+            });
+        }
+
+        window.onclick = function(e) {
+            if (e.target.id === 'modal') closeModal();
+        }
+    </script>
+</body>
+</html>
